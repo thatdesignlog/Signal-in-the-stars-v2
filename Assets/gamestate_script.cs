@@ -145,7 +145,7 @@ public class gamestate_script : MonoBehaviour
     private ui_script uis;
 
     public int money;
-    public int phase_beam_cost;
+    // public int phase_beam_cost;
 
 
     void Start()

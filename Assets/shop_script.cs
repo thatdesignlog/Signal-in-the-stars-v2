@@ -5,8 +5,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
+
 public class shop_script : MonoBehaviour
 {
+    
+    
     public gamestate_script gs;
     public class Upgrade{
         
@@ -14,7 +19,7 @@ public class shop_script : MonoBehaviour
         public int price;
     
     }
- 
+
 
     Dictionary<string, Upgrade> upgrade_dictionary = new Dictionary<string, Upgrade>()
     {
@@ -39,9 +44,20 @@ public class shop_script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach (Button_Script button in GameObject.FindObjectsOfType<Button_Script>()){
+            if (gs.money >= upgrade_dictionary[button.Upgrade_Name].price) {
+                button.button.interactable = true;
+                
+            }
+            else{
+                button.button.interactable = false;
+            }
+        };
     }
+    void Update_Button_State(){
 
+    }
+    
     public void buy_upgrade(string name){
         if (gs.money >= upgrade_dictionary[name].price) {
             gs.money -= upgrade_dictionary[name].price;

@@ -54,6 +54,7 @@ public class ui_script : MonoBehaviour
         Update_Text();
     }
 
+   
     void Update_Text()
     {
         
@@ -69,9 +70,9 @@ public class ui_script : MonoBehaviour
         postRoundMenu.SetActive(false);
         shop_menu.SetActive(true);
 
-        if (gs.money < gs.phase_beam_cost){
-            buy_upgrade.interactable = false;
-        }
+        // if (gs.money < gs.phase_beam_cost){
+        //     buy_upgrade.interactable = false;
+        // }
 
     }
    
