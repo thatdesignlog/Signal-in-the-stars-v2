@@ -76,6 +76,14 @@ public class ui_script : MonoBehaviour
 
     }
    
+   public void startNextRound(){
+
+        gs.status = "collecting packages";
+        gs.StartCoroutine(gs.spawn_box());
+        postRoundMenu.SetActive(false);
+
+
+   }
 
 
     public void CancelDialogue()

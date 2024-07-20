@@ -9,7 +9,7 @@ public class player_script : MonoBehaviour
     public Material beam_fire_color;
     float original_beam_width;
 
-    public bool has_piercing_beam;
+    private shop_script ss;
 
     bool firing;
 
@@ -24,6 +24,8 @@ public class player_script : MonoBehaviour
         lr.useWorldSpace = false;
         original_beam_width = lr.startWidth;
         lr.positionCount = 4;
+
+        ss = GameObject.FindAnyObjectByType<shop_script>(UnityEngine.FindObjectsInactive.Include);
     }
 
     // Update is called once per frame
@@ -133,7 +135,7 @@ public class player_script : MonoBehaviour
         Vector2 endPoint = lr.transform.TransformPoint(lr.GetPosition(1));
 
         // Cast a ray from the start point to the end point
-        if (has_piercing_beam)
+        if (ss.upgrade_dictionary["phasebeam"].purchased)
         {
             RaycastHit2D[] hits = Physics2D.RaycastAll(startPoint, endPoint - startPoint, (endPoint - startPoint).magnitude);
             // Process each hit
@@ -163,7 +165,7 @@ public class player_script : MonoBehaviour
 
         
 
-        Debug.DrawRay(startPoint, endPoint - startPoint, Color.yellow);
+        // Debug.DrawRay(startPoint, endPoint - startPoint, Color.yellow);
 
 
 

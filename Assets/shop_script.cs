@@ -17,11 +17,13 @@ public class shop_script : MonoBehaviour
         
         public bool purchased;
         public int price;
+
+
     
     }
 
 
-    Dictionary<string, Upgrade> upgrade_dictionary = new Dictionary<string, Upgrade>()
+    public Dictionary<string, Upgrade> upgrade_dictionary = new Dictionary<string, Upgrade>()
     {
         {"phasebeam", new Upgrade()
             {

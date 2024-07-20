@@ -686,13 +686,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef7e4d99abe0c34e84264ac21837f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  round_time_limit: 2
+  round_time_limit: 7
   status: 
   packages_collected: 0
   red_packages_collected: 0
   grey_packages_collected: 0
   money: 16
-  phase_beam_cost: 10
 --- !u!4 &349317184
 Transform:
   m_ObjectHideFlags: 0
@@ -1383,7 +1382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &667552261
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2741,6 +2740,7 @@ GameObject:
   - component: {fileID: 1194924951}
   - component: {fileID: 1194924950}
   - component: {fileID: 1194924949}
+  - component: {fileID: 1194924952}
   m_Layer: 5
   m_Name: upgrade_button
   m_TagString: Untagged
@@ -2862,6 +2862,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194924947}
   m_CullTransparentMesh: 1
+--- !u!114 &1194924952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194924947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79d6a3241d3147dd8dc291e1cd55c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Upgrade_Name: phasebeam
+  button: {fileID: 0}
 --- !u!1 &1218430920
 GameObject:
   m_ObjectHideFlags: 0

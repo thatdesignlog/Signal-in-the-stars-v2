@@ -165,6 +165,7 @@ public class gamestate_script : MonoBehaviour
     {
         if (status == "collecting packages")
         {
+            
             if (time_elapsed < round_time_limit)
             {
                 time_elapsed += Time.deltaTime;
@@ -196,11 +197,11 @@ public class gamestate_script : MonoBehaviour
     }
 
 
-    IEnumerator spawn_box()
+    public IEnumerator spawn_box()
     {
         if (status == "collecting packages")
         {
-
+            Debug.Log(Time.deltaTime);
             float randomInterval = Random.Range(.1f, 1);
             yield return new WaitForSeconds(randomInterval);
 
