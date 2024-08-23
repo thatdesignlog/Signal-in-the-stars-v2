@@ -25,7 +25,7 @@ public class player_script : MonoBehaviour
         original_beam_width = lr.startWidth;
         lr.positionCount = 4;
 
-        ss = GameObject.FindAnyObjectByType<shop_script>(UnityEngine.FindObjectsInactive.Include);
+        ss = GameObject.FindObjectOfType<shop_script>(true);
     }
 
     // Update is called once per frame
