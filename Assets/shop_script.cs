@@ -6,8 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-
-
 public class shop_script : MonoBehaviour
 {
     
@@ -40,6 +38,7 @@ public class shop_script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         gs = FindObjectOfType<gamestate_script>();
     }
 
