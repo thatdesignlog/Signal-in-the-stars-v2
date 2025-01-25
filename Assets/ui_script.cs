@@ -170,16 +170,18 @@ public class ui_script : MonoBehaviour
     public void PopulatePackageTypes()
     {
 
-        for(int clarice=1; clarice < 5; clarice++){
+        for(int i=1; i < 5; i++){
 
+            //this code disabled until we integrate it with the new menu
 
+            /*
             int RandomNumber = Random.Range(0,gs.greyPackageTypes.boring_types.Count);
 
             GameObject Menu = Instantiate(grey_package_text);
             Menu.transform.parent = grey_package_text.transform.parent;
-            Menu.transform.position = grey_package_text.transform.position + new Vector3(0,clarice* -55,0);
+            Menu.transform.position = grey_package_text.transform.position + new Vector3(0,i* -55,0);
             Menu.GetComponent<TextMeshProUGUI>().text = gs.greyPackageTypes.boring_types[RandomNumber];
-
+            */
         }
         
 
