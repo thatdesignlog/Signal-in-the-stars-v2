@@ -11,6 +11,11 @@ public class ui_script : MonoBehaviour
     public TextMeshProUGUI red_packages_count_text;
     public TextMeshProUGUI grey_packages_count_text;
 
+    public TextMeshProUGUI red_packages_total_value_text;
+    public TextMeshProUGUI grey_packages_total_value_text;
+
+    public TextMeshProUGUI mail_content;
+
     public TextMeshProUGUI trainee_text;
     public TextMeshProUGUI trainer_text;
 
@@ -58,12 +63,20 @@ public class ui_script : MonoBehaviour
     void Update_Text()
     {
         
-        packages_collected_text.text = gs.packages_collected.ToString();
-        grey_packages_count_text.text = gs.grey_packages_collected.ToString();
-        red_packages_count_text.text = gs.red_packages_collected.ToString();
+        //packages_collected_text.text = gs.packages_collected.ToString();
+        grey_packages_count_text.text = "x"+ gs.grey_packages_collected.ToString();
+        red_packages_count_text.text = "x" + gs.red_packages_collected.ToString();
+
+        // this is hard coded to save time, but will later be made dynamic
+        // currently package data are stored in package scripts, not gamestate script, which makes this difficult
+        grey_packages_total_value_text.text = (gs.grey_packages_collected * 1).ToString();
+        red_packages_total_value_text.text = (gs.red_packages_collected * 2).ToString();
+
         money_display_endgame.text = gs.money.ToString();
         money_display_shop.text = gs.money.ToString();
-        
+
+        mail_content.text = gs.greyPackageTypes.boring_types_body[0];
+
     }
 
     public void ContinueToShopMenu(){
@@ -114,12 +127,14 @@ public class ui_script : MonoBehaviour
                 trainer_text.gameObject.SetActive(false);
                 trainee_text.text = s.Substring(8);
             }
+            //yield return new WaitForSeconds(3);
             yield return new WaitForSeconds(0);
         }
 
         trainee_text.gameObject.SetActive(false);
         trainer_text.gameObject.SetActive(false);
 
+        //yield return new WaitForSeconds(1);
         yield return new WaitForSeconds(0);
         gs.status = "post-round menu";
         SetActivePostRoundMenu(true);
@@ -174,9 +189,10 @@ public class ui_script : MonoBehaviour
 
             //this code disabled until we integrate it with the new menu
 
-            /*
-            int RandomNumber = Random.Range(0,gs.greyPackageTypes.boring_types.Count);
+            
+            //int RandomNumber = Random.Range(0,gs.greyPackageTypes.boring_types.Count);
 
+            /*
             GameObject Menu = Instantiate(grey_package_text);
             Menu.transform.parent = grey_package_text.transform.parent;
             Menu.transform.position = grey_package_text.transform.position + new Vector3(0,i* -55,0);

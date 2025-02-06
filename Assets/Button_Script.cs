@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Button_Script : MonoBehaviour
 {
+    public string button_type;
     public string Upgrade_Name;
     public Button button;
     Image image;
@@ -41,5 +42,10 @@ public class Button_Script : MonoBehaviour
                 tab_button.menu.SetActive(false);
             }
         }
+    }
+
+    public void Reset()
+    {
+        
     }
 }

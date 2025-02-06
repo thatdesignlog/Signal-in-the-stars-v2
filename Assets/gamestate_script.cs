@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.Analytics;
+using static UnityEditor.PlayerSettings;
+using static UnityEditor.Progress;
 
 public class gamestate_script : MonoBehaviour
 {
@@ -19,13 +22,29 @@ public class gamestate_script : MonoBehaviour
         public float cute_percentage = .2f;
         public float boring_percentage = .8f;
 
-        public List<string> boring_types = new List<string>()
+        public List<string> boring_types_teaser = new List<string>()
         {
-            "produce from Central Agriculture Ltd",
-            "Authentic Krill from University of Carolina Research Division",
-            "Class B pearls from Appian Luxury Suite",
-            "Unfinished aluminimum sheet metal from Decatur Industrial",
-            "Gaseous samples from Peach County Polytechnic College ",
+            "Property of Tesker Mining Ltd. Invoic ... ",
+            "Property of Bhangra Agricultural Holdings. Invoice ...",
+            "Product Sample: 12 grams of authentic Appian fresh ...",
+
+        };
+
+        public List<string> boring_types_body = new List<string>()
+        {
+            @"Property of Tesker Mining Ltd. Invoice attached
+
+Please confirm receipt of the following items.  
+
+10 kilos of raw aluminum (industrial sample)
+10 kilos of raw palladium (industrial sample)
+10 kilos of raw cobalt (industrial sample) 
+
+Asset Tag No. 17278524391
+",
+            "Property of Bhangra Agricultural Holdings. Invoice ...",
+            "Product Sample: 12 grams of authentic Appian fresh ...",
+
         };
 
         public List<string> cute_types = new List<string>()
@@ -45,15 +64,10 @@ public class gamestate_script : MonoBehaviour
         public float boring_percentage = .12f;
         public float sad_percentage = .88f;
 
-        public List<string> boring_types = new List<string>()
-        {
-            "unrefined iridium",
-            "raw iron",
-            "geologic samples",
-
-        };
-
         
+
+
+
         public List<string> sad_types = new List<string>()
         {
             "Human ashes, contained in copper urn",
@@ -107,17 +121,17 @@ public class gamestate_script : MonoBehaviour
         {
             "Trainer: Point seven seconds to charge",
             "Trainee: Earth seconds? Or Centurion seconds?",
-            "Trainer: � ",
+            "Trainer: … ",
         } ,
          new List<string>()
         {
-            "Trainer: My hangover pill�s wearing off.",
-            "Trainee: � Good thing you don�t pilot passengers.",
+            "Trainer: My hangover pill’s wearing off.",
+            "Trainee: … Good thing you don’t pilot passengers.",
         } ,
         new List<string>()
            {
             "Trainee: There are so many!",
-            "Trainer: � I know",
+            "Trainer: … I know",
           } ,
         new List<string>()
            {
@@ -136,6 +150,9 @@ public class gamestate_script : MonoBehaviour
 
     public int red_packages_collected;
     public int grey_packages_collected;
+
+    public int red_package_value;
+    public int grey_package_value;
 
     private string[] filePaths;
 
@@ -163,12 +180,14 @@ public class gamestate_script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("time elapsed: "+ time_elapsed + "        round time limit: "+ round_time_limit);
         if (status == "collecting packages")
         {
-            
+            //Debug.Log(round_time_limit);
             if (time_elapsed < round_time_limit)
             {
                 time_elapsed += Time.deltaTime;
+                
             }
             else
             {
