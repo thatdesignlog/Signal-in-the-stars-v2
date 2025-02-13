@@ -27,10 +27,17 @@ public class shop_script : MonoBehaviour
         {"phasebeam", new Upgrade()
             {
                 purchased = false,
-
                 price = 15
 
              }
+        },
+        {"charge upgrade", new Upgrade()
+            {
+                purchased = false,
+                price = 20
+            }
+
+
         }
     };
 
