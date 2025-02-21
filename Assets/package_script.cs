@@ -61,7 +61,7 @@ public class package_script : MonoBehaviour
     {
         if (grabbed)
         {
-            rb.linearVelocity = Vector2.zero;
+            rb.velocity = Vector2.zero;
             rb.angularVelocity = 0;
             transform.position = Vector2.MoveTowards(transform.position, ps.transform.position, speed);
         }
