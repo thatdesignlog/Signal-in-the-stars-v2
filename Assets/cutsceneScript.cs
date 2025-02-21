@@ -14,5 +14,5 @@ public class cutsceneScript : MonoBehaviour
     void Update()
     {
         
-    }
+    } 
 }
