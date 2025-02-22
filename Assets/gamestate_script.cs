@@ -228,6 +228,8 @@ Kunle
     public int money;
     // public int phase_beam_cost;
 
+   
+   
 
     void Start()
     {
