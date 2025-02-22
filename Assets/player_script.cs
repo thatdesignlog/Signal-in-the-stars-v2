@@ -14,7 +14,7 @@ public class player_script : MonoBehaviour
     bool firing;
 
     public int line_length;
-    public float charge_duration = 5f; // Duration in seconds for the angle change
+    public float charge_duration; // Duration in seconds for the angle change
 
     private float elapsedTime = 0f; // Elapsed time since the start
     void Start()
@@ -55,8 +55,13 @@ public class player_script : MonoBehaviour
     void HandleBeamCharge()
     {
 
+        if (ss.upgrade_dictionary["charge upgrade"].purchased)
+        {
+            charge_duration = 0.35f;
+        }
 
-        if (Input.GetMouseButton(0) && !firing)
+
+            if (Input.GetMouseButton(0) && !firing)
         {
             lr.enabled = true;
 
@@ -112,7 +117,7 @@ public class player_script : MonoBehaviour
     {
 
 
-
+        
 
 
         firing = true;

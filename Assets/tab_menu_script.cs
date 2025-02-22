@@ -11,6 +11,7 @@ public class tab_menu_script : MonoBehaviour
     public class Tab_Button
     {
         public Image button;
+        public GameObject menu;
         public Sprite button_pressed;
         public Sprite button_default;
     }
