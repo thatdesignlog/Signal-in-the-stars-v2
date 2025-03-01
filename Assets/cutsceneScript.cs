@@ -86,6 +86,10 @@ public class cutsceneScript : MonoBehaviour {
 
     };
 
+    bool unveiling_text;
+    int remaining_characters_to_unveil;
+
+
     public TextMeshProUGUI CadetDialogText;
     int CadetDialogIndex;
 
@@ -111,11 +115,41 @@ public class cutsceneScript : MonoBehaviour {
     {
         clickHandler();
         Debug.Log(CadetDialogIndex);
-        CadetDialogText.text = CadetDialog[CadetDialogIndex];
+
+
+
+        if (!unveiling_text)
+        {
+            CadetDialogText.text = CadetDialog[CadetDialogIndex];
+        }
+        else
+        {
+
+            CadetDialogText.text = CadetDialog[CadetDialogIndex].Substring(0, CadetDialog[CadetDialogIndex].Length - remaining_characters_to_unveil);        
+        }
+        
+
+
+
         CorporalDialogOption1.text = CorporalDialog[CorporalDialogOptionIndex][0];
         CorporalDialogOption2.text = CorporalDialog[CorporalDialogOptionIndex][1];
         CorporalDialogOption3.text = CorporalDialog[CorporalDialogOptionIndex][2];
 
+    }
+
+    IEnumerator unveil_letter()
+    {
+        yield return new WaitForSeconds(.2f);
+        if (remaining_characters_to_unveil > 0)
+        {
+            remaining_characters_to_unveil -= 1;
+            StartCoroutine(unveil_letter());
+        }
+        else
+        {
+            unveiling_text = false;
+        }
+        
     }
 
     void clickHandler()
@@ -124,7 +158,16 @@ public class cutsceneScript : MonoBehaviour {
         {
             if (CadetDialogText.gameObject.activeSelf && !CorporalDialogOption1.gameObject.activeSelf)
             {
-                NextDialog();
+                if (unveiling_text)
+                {
+                    unveiling_text = false;
+                    remaining_characters_to_unveil = 0;
+                }
+                else
+                {
+                    NextDialog();
+                }
+                
             }
         }
     }
@@ -138,6 +181,10 @@ public class cutsceneScript : MonoBehaviour {
             CorporalDialogOption1.gameObject.SetActive(false);
             CorporalDialogOption2.gameObject.SetActive(false);
             CorporalDialogOption3.gameObject.SetActive(false);
+
+            unveiling_text = true;
+            remaining_characters_to_unveil = CadetDialog[CadetDialogIndex].Length;
+            StartCoroutine(unveil_letter());
         }
         else
         {
