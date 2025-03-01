@@ -5,7 +5,7 @@ using TMPro;
 
 public class cutsceneScript : MonoBehaviour
 
-
+    // Scene #2 (Visual Novel Scene #1)
      List<string> CadetDialog = new List<string>()
     {
         "",
