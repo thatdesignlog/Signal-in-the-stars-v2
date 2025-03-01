@@ -34,4 +34,9 @@ public class mouseOverScript : MonoBehaviour
         // Reset the color of the GameObject back to normal
         textMesh.color = m_OriginalColor;
     }
+
+    public void resetColor()
+    {
+        textMesh.color = m_OriginalColor;
+    }
 }

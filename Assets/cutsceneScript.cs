@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class cutsceneScript : MonoBehaviour
+public class cutsceneScript : MonoBehaviour { 
 
 
      List<string> CadetDialog = new List<string>()
@@ -15,9 +15,9 @@ public class cutsceneScript : MonoBehaviour
         "No, no, no. You said you’d give me career advice for free, but that to be pleasant about it you’d need a shot.", 
         "We got to talking and realized I’d actually applied for an internship at your outpost!", 
         "That’s what you said last night!", 
-        "You said that too! Well, your actual words were \“None of these daisy-eyed grasshoppers are gonna last a month anyway before they crack like the outer hull on the Europa 17, but at least that chick looks like she can handle her liquor. I’ll hire her.\”, 
+        "You said that too! Well, your actual words were \"None of these daisy-eyed grasshoppers are gonna last a month anyway before they crack like the outer hull on the Europa 17, but at least that chick looks like she can handle her liquor. I’ll hire her.\"", 
         "Why did I accept an unpaid internship with an underfunded post office on the Outer Rim?", 
-        "That’ll just have to remain a mystery for now, won’t it? I will say this, though. I’m looking forward to changing the universe with you, Corporal. One day at a time."
+        "That’ll just have to remain a mystery for now, won’t it? I will say this, though. I’m looking forward to changing the universe with you, Corporal. One day at a time.",
     };
     
 
@@ -33,8 +33,7 @@ public class cutsceneScript : MonoBehaviour
 
             new List<string>()
          {
-             "Right, tequila …. Okay, it’s coming back to me. We were at the grad ceremony …. My old squadmates and I decided to get drinks after … We walked into that place with the rusty door ….. 
-",
+             "Right, tequila …. Okay, it’s coming back to me. We were at the grad ceremony …. My old squadmates and I decided to get drinks after … We walked into that place with the rusty door ….. ",
              "",
              "",
 
@@ -93,12 +92,18 @@ public class cutsceneScript : MonoBehaviour
     public TextMeshProUGUI CorporalDialogOption1;
     public TextMeshProUGUI CorporalDialogOption2;
     public TextMeshProUGUI CorporalDialogOption3;
+    mouseOverScript CorporalDialogOptionColor1;
+    mouseOverScript CorporalDialogOptionColor2;
+    mouseOverScript CorporalDialogOptionColor3;
+
     int CorporalDialogOptionIndex;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        CorporalDialogOptionColor1 = CorporalDialogOption1.gameObject.GetComponent<mouseOverScript>();
+        CorporalDialogOptionColor2 = CorporalDialogOption2.gameObject.GetComponent<mouseOverScript>();
+        CorporalDialogOptionColor3 = CorporalDialogOption3.gameObject.GetComponent<mouseOverScript>();
     }
 
     // Update is called once per frame
@@ -149,6 +154,10 @@ public class cutsceneScript : MonoBehaviour
             CorporalDialogOption1.gameObject.SetActive(true);
             CorporalDialogOption2.gameObject.SetActive(true);
             CorporalDialogOption3.gameObject.SetActive(true);
+            CorporalDialogOptionColor1.resetColor();
+            CorporalDialogOptionColor2.resetColor();
+            CorporalDialogOptionColor3.resetColor();
+
         }
     }
 
