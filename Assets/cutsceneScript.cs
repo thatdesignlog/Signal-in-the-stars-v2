@@ -55,7 +55,11 @@ public class cutsceneScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(CadetDialogIndex);
         CadetDialogText.text = CadetDialog[CadetDialogIndex];
+        CorporalDialogOption1.text = CorporalDialog[CorporalDialogOptionIndex][0];
+        CorporalDialogOption2.text = CorporalDialog[CorporalDialogOptionIndex][1];
+        CorporalDialogOption3.text = CorporalDialog[CorporalDialogOptionIndex][2];
 
     }
     public void SelectDialog()
