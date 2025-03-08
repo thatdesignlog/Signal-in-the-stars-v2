@@ -10,16 +10,21 @@ public class cutsceneScript : MonoBehaviour {
     {
         "",
         "Well, technically it’s not satellite morning. Back at the Nairobi station it’s 7:27 am, though! And I don’t know about you, Corporal, but I’m still on Nairobi time!",
-        "Good thing you bailed on the juice. I guess tequila shots followed by hyperspace is too much even for a vet.",
+        "Would you like some juice?",
+         "More for me, then! Are you more of a tea person?",
+         "Senior Cadet Aimee Kennington, Beta Branch 257!", 
+         "Usually, yes. But you hired me for the summer!",
+         "Whoa, we hit another jump point!",
+         "Good thing you bailed on the juice. I guess tequila shots followed by hyperspace is too much even for a vet.",
         "The orange flecks are paint. Mostly.",
         "No, no, no. You said you’d give me career advice for free, but that to be pleasant about it you’d need a shot.", 
         "We got to talking and realized I’d actually applied for an internship at your outpost!", 
         "That’s what you said last night!", 
         "You said that too! Well, your actual words were \"None of these daisy-eyed grasshoppers are gonna last a month anyway before they crack like the outer hull on the Europa 17, but at least that chick looks like she can handle her liquor. I’ll hire her.\"", 
         "Why did I accept an unpaid internship with an underfunded post office on the Outer Rim?", 
-        "That’ll just have to remain a mystery for now, won’t it? I will say this, though. I’m looking forward to changing the universe with you, Corporal. One day at a time.",
+        "That’ll just have to remain a mystery for now, won’t it? I will say this, though. I’m looking forward to changing the universe together, Corporal. One day at a time.",
     };
-    
+
 
      List<List<string>> CorporalDialog = new List<List<string>>() 
     {
