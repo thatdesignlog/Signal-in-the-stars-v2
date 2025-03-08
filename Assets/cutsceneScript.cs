@@ -36,6 +36,29 @@ public class cutsceneScript : MonoBehaviour {
        
          },
 
+              new List<string>()
+         {
+             "Look, um, I don't know how to say this but ... Have we met before?",
+             "Look, um, I don't know how to say this but ... Who the hell are you?",
+             "",
+
+         },
+
+                 new List<string>()
+         {
+             "Um. Shouldn't you be planetside, then? Taking classes?",
+             " ",
+             " ",
+
+         },
+            new List<string>()
+         {
+             "No, thanks.",
+             "If I swallow anything, I'll vomit.",
+             " ",
+
+         },
+
             new List<string>()
          {
              "Right, tequila …. Okay, it’s coming back to me. We were at the grad ceremony …. My old squadmates and I decided to get drinks after … We walked into that place with the rusty door ….. ",
