@@ -30,9 +30,13 @@ public class cutsceneScript : MonoBehaviour {
     {
            new List<string>()
          {
-             "Um ...",
-             "",
-             "",
+
+               "The quick brown fox jumps over the lazy dog The quick brown fox jumps over the lazy dog The quick brown foxasdf",
+               "",
+               ""
+               //"Um ...",
+             //"",
+             //"",
        
          },
 
@@ -121,6 +125,8 @@ public class cutsceneScript : MonoBehaviour {
     public TextMeshProUGUI CadetDialogText;
     int CadetDialogIndex;
 
+    public GameObject CorporalTextPanel;
+    public GameObject CadetTextPanel;
     public TextMeshProUGUI CorporalDialogOption1;
     public TextMeshProUGUI CorporalDialogOption2;
     public TextMeshProUGUI CorporalDialogOption3;
@@ -167,7 +173,7 @@ public class cutsceneScript : MonoBehaviour {
 
     IEnumerator unveil_letter()
     {
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.03f);
         if (remaining_characters_to_unveil > 0)
         {
             remaining_characters_to_unveil -= 1;
@@ -204,6 +210,9 @@ public class cutsceneScript : MonoBehaviour {
       
         if (CadetDialogIndex < CadetDialog.Count-1)
         {
+            CorporalTextPanel.gameObject.SetActive(false);
+
+            CadetTextPanel.gameObject.SetActive(true);
             CadetDialogText.gameObject.SetActive(true);
             CadetDialogIndex++;
             CorporalDialogOption1.gameObject.SetActive(false);
@@ -224,8 +233,12 @@ public class cutsceneScript : MonoBehaviour {
     {
         if (CorporalDialogOptionIndex < CorporalDialog.Count - 1)
         {
+            CorporalTextPanel.gameObject.SetActive(true);
+            CadetTextPanel.gameObject.SetActive(false);
+
             CadetDialogText.gameObject.SetActive(false);
             CorporalDialogOptionIndex++;
+
             CorporalDialogOption1.gameObject.SetActive(true);
             CorporalDialogOption2.gameObject.SetActive(true);
             CorporalDialogOption3.gameObject.SetActive(true);
