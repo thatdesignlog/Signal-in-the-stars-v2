@@ -30,13 +30,9 @@ public class cutsceneScript : MonoBehaviour {
     {
            new List<string>()
          {
-
-               "The quick brown fox jumps over the lazy dog The quick brown fox jumps over the lazy dog The quick brown foxasdf",
-               "",
-               ""
-               //"Um ...",
-             //"",
-             //"",
+             "Um ...",
+             "",
+             "",
        
          },
 
