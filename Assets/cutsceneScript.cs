@@ -48,8 +48,7 @@ public class cutsceneScript : MonoBehaviour {
     void Update()
     {
         visualNovel.gameObject.SetActive(false);
-        //Debug.Log(vp.frameCount  (long)vp.frameCount - 1);
-        if (vp.frame == (long)vp.frameCount-1)
+        if (!vp.isPlaying && vp.frame>1)
         {
             vp.gameObject.SetActive(false);
 
