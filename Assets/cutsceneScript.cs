@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Video;
 
 public class cutsceneScript : MonoBehaviour { 
 
@@ -19,6 +20,8 @@ public class cutsceneScript : MonoBehaviour {
     public TextMeshProUGUI CorporalDialogOption3;
     public TextMeshProUGUI MonologueDialog;
     public VN_1DialogueScript ds;
+    VideoPlayer vp;
+    GameObject visualNovel;
     mouseOverScript CorporalDialogOptionColor1;
     mouseOverScript CorporalDialogOptionColor2;
     mouseOverScript CorporalDialogOptionColor3;
@@ -33,7 +36,9 @@ public class cutsceneScript : MonoBehaviour {
         CorporalDialogOptionColor3 = CorporalDialogOption3.gameObject.GetComponent<mouseOverScript>();
         //MonologueDialog = GameObject.FindGameObjectWithTag("monologueButton").GetComponent<TextMeshProUGUI>();
         ds = FindObjectOfType<VN_1DialogueScript>();
-
+        vp = FindAnyObjectByType<VideoPlayer>();
+        visualNovel = GameObject.FindGameObjectWithTag("visualNovel");
+        
         Debug.Log(ds.VNscene_1_dialogue[dialogOptionIndex]);
         Debug.Log(ds.VNscene_1_dialogue[dialogOptionIndex].speaker);
 
@@ -42,35 +47,43 @@ public class cutsceneScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        
-        clickHandler();
-
-        VN_1DialogueScript.DialogueLine currentDialogLine = ds.VNscene_1_dialogue[dialogOptionIndex];
-        if (currentDialogLine.speaker == "Corporal")
+        visualNovel.gameObject.SetActive(false);
+        //Debug.Log(vp.frameCount  (long)vp.frameCount - 1);
+        if (vp.frame == (long)vp.frameCount-1)
         {
-            CorporalDialogOption1.gameObject.SetActive(!string.IsNullOrEmpty(currentDialogLine.line1));
-            CorporalDialogOption2.gameObject.SetActive(!string.IsNullOrEmpty(currentDialogLine.line2));
-            CorporalDialogOption3.gameObject.SetActive(!string.IsNullOrEmpty(currentDialogLine.line3));
-            CorporalDialogOption1.text = currentDialogLine.line1;
-            CorporalDialogOption2.text = currentDialogLine.line2;
-            CorporalDialogOption3.text = currentDialogLine.line3;
-        }
+            vp.gameObject.SetActive(false);
 
-        else if (currentDialogLine.speaker == "Cadet")
-        {
-            if (!unveiling_text)
+
+
+            visualNovel.gameObject.SetActive(true);
+            clickHandler();
+
+            VN_1DialogueScript.DialogueLine currentDialogLine = ds.VNscene_1_dialogue[dialogOptionIndex];
+            if (currentDialogLine.speaker == "Corporal")
             {
-                CadetDialogText.text = currentDialogLine.line1;
+                CorporalDialogOption1.gameObject.SetActive(!string.IsNullOrEmpty(currentDialogLine.line1));
+                CorporalDialogOption2.gameObject.SetActive(!string.IsNullOrEmpty(currentDialogLine.line2));
+                CorporalDialogOption3.gameObject.SetActive(!string.IsNullOrEmpty(currentDialogLine.line3));
+                CorporalDialogOption1.text = currentDialogLine.line1;
+                CorporalDialogOption2.text = currentDialogLine.line2;
+                CorporalDialogOption3.text = currentDialogLine.line3;
             }
-            else
+
+            else if (currentDialogLine.speaker == "Cadet")
             {
+                if (!unveiling_text) 
+                {
+                    CadetDialogText.text = currentDialogLine.line1;
+                }
+                else
+                {
 
-                CadetDialogText.text = currentDialogLine.line1.Substring(0, currentDialogLine.line1.Length - remaining_characters_to_unveil);
+                    CadetDialogText.text = currentDialogLine.line1.Substring(0, currentDialogLine.line1.Length - remaining_characters_to_unveil);
+                }
             }
+
+
         }
-
-
-
 
 
 
