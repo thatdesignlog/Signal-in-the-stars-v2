@@ -28,6 +28,9 @@ public class cutsceneScript : MonoBehaviour {
 
     int dialogOptionIndex;
 
+    // this determines which cutscene we're on
+    public int videoIndex;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +51,7 @@ public class cutsceneScript : MonoBehaviour {
     void Update()
     {
         visualNovel.gameObject.SetActive(false);
-        if (!vp.isPlaying && vp.frame>1)
+        if (videoIndex > 0)
         {
             vp.gameObject.SetActive(false);
 
