@@ -7,6 +7,7 @@ public class VN_1DialogueScript : MonoBehaviour
 {
     public class DialogueLine
     {
+        
         public string line1;
         public string line2;
         public string line3;
@@ -21,7 +22,7 @@ public class VN_1DialogueScript : MonoBehaviour
           line2 = "",
           line3 = "",
           speaker = "Corporal",
-          isMonologue = false,
+          
       },
        new DialogueLine()
       {
@@ -39,8 +40,22 @@ public class VN_1DialogueScript : MonoBehaviour
           speaker = "Corporal",
           isMonologue = false,
       },
-
-
+         new DialogueLine()
+      {
+          line1 = "Senior Cadet Aimee Kennington, Beta Branch two five seven!",
+          line2 = "",
+          line3 = "",
+          speaker = "Cadet",
+          isMonologue = false,
+      },
+           new DialogueLine()
+      {
+          line1 = "Um. Shouldn’t you be planetside, then? Taking classes?",
+          line2 = "",
+          line3 = "",
+          speaker = "Corporal",
+          isMonologue = false,
+      },
     };
 
     //// Start is called before the first frame update
