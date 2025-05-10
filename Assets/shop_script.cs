@@ -24,6 +24,14 @@ public class shop_script : MonoBehaviour
 
     public Dictionary<string, Upgrade> upgrade_dictionary = new Dictionary<string, Upgrade>()
     {
+        {"regularbeam", new Upgrade()
+            {
+                purchased = false,
+                price = 15
+
+             }
+        },
+
         {"phasebeam", new Upgrade()
             {
                 purchased = false,

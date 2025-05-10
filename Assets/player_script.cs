@@ -7,9 +7,11 @@ public class player_script : MonoBehaviour
     private LineRenderer lr;
     public Material beam_charge_color;
     public Material beam_fire_color;
+
     float original_beam_width;
 
     private shop_script ss;
+    public bool ship_rotation_locked;
 
     bool firing;
 
@@ -17,6 +19,9 @@ public class player_script : MonoBehaviour
     public float charge_duration; // Duration in seconds for the angle change
 
     private float elapsedTime = 0f; // Elapsed time since the start
+
+    public GameObject GrapplingHook;
+    string grappling_hook_state;
     void Start()
     {
         lr = GetComponent<LineRenderer>();
@@ -31,8 +36,21 @@ public class player_script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotateTowardsMouse();        
-        HandleBeamCharge();
+        if (!ship_rotation_locked)
+        {
+            RotateTowardsMouse();
+        }
+
+        if (ss.upgrade_dictionary["regularbeam"].purchased)
+        {
+
+            HandleBeamCharge();
+
+        }
+        else
+        {
+            HandleGrapplingHook();
+        }
 
 
 
@@ -43,7 +61,7 @@ public class player_script : MonoBehaviour
         Vector2 startPoint = lr.GetPosition(0);
         Vector2 endPoint = lr.GetPosition(1);
 
-        
+
 
         // Cast a ray from the start point to the end point
         RaycastHit2D[] hits = Physics2D.RaycastAll(startPoint, new Vector2(-1, 0), (endPoint - startPoint).magnitude);
@@ -61,11 +79,11 @@ public class player_script : MonoBehaviour
         }
 
 
-            if (Input.GetMouseButton(0) && !firing)
+        if (Input.GetMouseButton(0) && !firing)
         {
             lr.enabled = true;
 
-            
+
 
             elapsedTime += Time.deltaTime;
 
@@ -87,19 +105,11 @@ public class player_script : MonoBehaviour
             lr.SetPosition(2, transform.position);
             lr.SetPosition(3, line2DestinationPoint);
 
-
-
-
-
-
-
-
-
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            
+
             if (elapsedTime >= charge_duration)
             {
                 FireBeam();
@@ -113,11 +123,56 @@ public class player_script : MonoBehaviour
     }
 
 
+    void HandleGrapplingHook()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (!firing)
+            {
+                grappling_hook_state = "going out";
+            }
+             
+
+            
+            firing = true;
+            GrapplingHook.SetActive(true);
+        }
+        if (firing)
+        {
+            if (grappling_hook_state == "going out") { 
+                if (Vector2.Distance(GrapplingHook.transform.position,transform.position)>12f)
+   
+                {
+                    grappling_hook_state = "coming back";
+                }
+            
+                GrapplingHook.transform.position += transform.up *12*Time.deltaTime;
+            }
+            else if (grappling_hook_state == "coming back")
+            {
+                GrapplingHook.transform.position -= transform.up * 12 * Time.deltaTime;
+            }
+            ship_rotation_locked = true;
+
+            lr.enabled = true;
+  
+            // Update the line renderer points
+            /*
+            lr.SetPosition(0, transform.position);
+            lr.SetPosition(1, line1destinationPoint);
+
+            lr.SetPosition(2, transform.position);
+            lr.SetPosition(3, line2DestinationPoint);
+            */
+
+        }
+    }
+
     void FireBeam()
     {
 
 
-        
+
 
 
         firing = true;
@@ -157,7 +212,7 @@ public class player_script : MonoBehaviour
         {
             int layer_mask = LayerMask.GetMask("packages");
             RaycastHit2D hit = Physics2D.Raycast(startPoint, endPoint - startPoint, (endPoint - startPoint).magnitude, layer_mask);
-            Debug.Log(hit.ToString() + " "+ hit.collider);
+            Debug.Log(hit.ToString() + " " + hit.collider);
             if (hit.collider != null)
             {
                 package_script ps = hit.collider.GetComponent<package_script>();
@@ -168,7 +223,7 @@ public class player_script : MonoBehaviour
             }
         }
 
-        
+
 
         // Debug.DrawRay(startPoint, endPoint - startPoint, Color.yellow);
 
@@ -220,6 +275,19 @@ public class player_script : MonoBehaviour
         // Rotate the object towards the mouse position
         Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
         transform.rotation = rotation;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == GrapplingHook.name)
+        {
+            grappling_hook_state = "reset";
+            GrapplingHook.SetActive(false);
+            firing = false;
+            ship_rotation_locked = false;
+        }
+
+        Debug.Log(collision);
     }
 }
 
