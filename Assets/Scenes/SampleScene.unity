@@ -3832,6 +3832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1173620316}
   - component: {fileID: 1173620317}
+  - component: {fileID: 1173620318}
   m_Layer: 0
   m_Name: GrapplingHook
   m_TagString: Untagged
@@ -3890,6 +3891,33 @@ CircleCollider2D:
   m_Offset: {x: 0.018031476, y: -0.09917466}
   serializedVersion: 2
   m_Radius: 1.825339
+--- !u!50 &1173620318
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173620315}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1173662149
 GameObject:
   m_ObjectHideFlags: 0
@@ -4850,6 +4878,7 @@ MonoBehaviour:
   line_length: 500
   charge_duration: 0.07
   GrapplingHook: {fileID: 1173620315}
+  GrapplingHookRope: {fileID: 0}
 --- !u!212 &1618086196
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4939,7 +4968,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 629546028543b93418ae7201adb6cd30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5014,7 +5043,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
@@ -6327,7 +6356,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.29191217, w: 0.95644516}
   m_LocalPosition: {x: 0, y: -0.0000005148397, z: -0.00000003994446}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1173620316}

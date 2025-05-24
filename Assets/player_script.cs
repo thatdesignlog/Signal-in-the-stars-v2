@@ -21,12 +21,14 @@ public class player_script : MonoBehaviour
     private float elapsedTime = 0f; // Elapsed time since the start
 
     public GameObject GrapplingHook;
+    public Material GrapplingHookRope;
     string grappling_hook_state;
     void Start()
     {
         lr = GetComponent<LineRenderer>();
-        lr.material = beam_charge_color;
+
         lr.useWorldSpace = false;
+        
         original_beam_width = lr.startWidth;
         lr.positionCount = 4;
 
@@ -112,6 +114,7 @@ public class player_script : MonoBehaviour
 
             if (elapsedTime >= charge_duration)
             {
+                Debug.Log("trac");
                 FireBeam();
             }
             else
@@ -125,6 +128,11 @@ public class player_script : MonoBehaviour
 
     void HandleGrapplingHook()
     {
+        lr.startWidth = .2f;
+        lr.endWidth = .2f;
+        lr.useWorldSpace = true;
+        lr.positionCount = 2;
+
         if (Input.GetMouseButton(0))
         {
             if (!firing)
@@ -139,7 +147,17 @@ public class player_script : MonoBehaviour
         }
         if (firing)
         {
-            if (grappling_hook_state == "going out") { 
+            lr.enabled = true;
+            lr.SetPosition(0, transform.position);
+            lr.SetPosition(1, GrapplingHook.transform.position);
+            if (grappling_hook_state == "going out") {
+
+
+                //lr.material.mainTextureScale = new Vector2(lr.positionCount, 1);
+
+                //lr.SetPosition(1, new Vector3(GrapplingHook.transform.position.x, GrapplingHook.transform.position.y,lr.GetPosition(1).z));
+
+
                 if (Vector2.Distance(GrapplingHook.transform.position,transform.position)>12f)
    
                 {
@@ -281,13 +299,15 @@ public class player_script : MonoBehaviour
     {
         if (collision.name == GrapplingHook.name)
         {
-            grappling_hook_state = "reset";
-            GrapplingHook.SetActive(false);
-            firing = false;
-            ship_rotation_locked = false;
+            if (grappling_hook_state == "coming back")
+            {
+                grappling_hook_state = "reset";
+                GrapplingHook.SetActive(false);
+                firing = false;
+                ship_rotation_locked = false;
+                lr.enabled = false;
+            }
         }
-
-        Debug.Log(collision);
     }
 }
 
